@@ -17,16 +17,16 @@ public class Solution {
         if (subject.equalsIgnoreCase("1")) {
 
             System.out.println("[A шифрование] [J расшифровка],[B брутфорс] пожалуйста, выберите один");
-            String work = scanner2.nextLine();// Получить строку этой строки
+            String work = scanner2.nextLine();
             switch (work){
-                case  ("A" ): // Определяем, равны ли переменные s1 и A, и игнорируем размер
+                case  ("A" ):
                 System.out.println("Пожалуйста, введите простой текст:");
                 Scanner scanner = new Scanner(System.in);
                 String string = scanner.nextLine();
                 System.out.println("Пожалуйста, введите ключ:");
                 Scanner scanner1 = new Scanner(System.in);
-                int key = scanner1.nextInt();// Преобразовать следующий элемент ввода в int
-                encrypt(string, key);// Вызываем метод шифрования
+                int key = scanner1.nextInt();
+                encrypt(string, key);
                     break;
 
                 case  ("J") :
@@ -36,7 +36,7 @@ public class Solution {
                 System.out.println("Пожалуйста, введите ключ:");
                 Scanner sc1 = new Scanner(System.in);
                     key = sc1.nextInt();
-                decrypt(string, key);// Вызываем метод шифрования
+                decrypt(string, key);
                     break;
 
                 case  ("B") :
@@ -66,14 +66,15 @@ public class Solution {
 
             File mainFile = new File(path);
 
-            System.out.println("[A шифрование] [J расшифровка],[B брут форс],[S поиск по фрагменту строки] - пожалуйста, выберите один");
-            String work = scanner2.nextLine();// Получить строку этой строки
+            System.out.println("[A шифрование] [J расшифровка],[B брут форс],[S поиск по фрагменту строки]" +
+                    "- пожалуйста, выберите один");
+            String work = scanner2.nextLine();
             switch (work){
-                case ("A") :// Определяем, равны ли переменные s1 и A, и игнорируем размер
+                case ("A") :
 
                 System.out.println("Пожалуйста, введите ключ:");
                 Scanner scanner1 = new Scanner(System.in);
-                int key = scanner1.nextInt();// Преобразовать следующий элемент ввода в int
+                int key = scanner1.nextInt();
 
                 Path path2 = Path.of("D:/directory");
                     Files.deleteIfExists(Paths.get("D:/directory//decryptedCopyOfText.txt"));
