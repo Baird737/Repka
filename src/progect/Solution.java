@@ -9,9 +9,6 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Solution {
-    static final char[] alphabet = {'\n', ' ', '.', '!', 'a', 'b', 'c', 'd',
-            'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
     public static void main(String[] args) throws IOException {
         Scanner scanner2 = new Scanner(System.in);
