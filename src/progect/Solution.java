@@ -29,7 +29,7 @@ public class Solution {
                 System.out.println("Пожалуйста, введите ключ:");
                 Scanner scanner1 = new Scanner(System.in);
                 int key = scanner1.nextInt();// Преобразовать следующий элемент ввода в int
-                encrypt(string, key, alphabet);// Вызываем метод шифрования
+                encrypt(string, key);// Вызываем метод шифрования
                     break;
 
                 case  ("J") :
@@ -39,7 +39,7 @@ public class Solution {
                 System.out.println("Пожалуйста, введите ключ:");
                 Scanner sc1 = new Scanner(System.in);
                     key = sc1.nextInt();
-                decrypt(string, key, alphabet);// Вызываем метод шифрования
+                decrypt(string, key);// Вызываем метод шифрования
                     break;
 
                 case  ("B") :
@@ -56,7 +56,7 @@ public class Solution {
                         fin = false;
                         break;
                     }
-                    System.out.println(brutForse(string, Integer.parseInt(key1), alphabet));
+                    System.out.println(brutForse(string, Integer.parseInt(key1)));
 
                 }
                 break;
@@ -90,7 +90,7 @@ public class Solution {
 
                 Path ff = Paths.get(String.valueOf(mainFile));
 
-                Files.writeString(ff, decrypt(String.valueOf(list),key,alphabet),  StandardCharsets.UTF_8);
+                Files.writeString(ff, decrypt(String.valueOf(list),key),  StandardCharsets.UTF_8);
                 copyFileUsingChannel(mainFile,endFile);
                     System.out.println(Path.of(String.valueOf(endFile)));
                 break;
@@ -112,7 +112,7 @@ public class Solution {
 
                  ff = Paths.get(String.valueOf(mainFile));
 
-                Files.writeString(ff, encrypt(String.valueOf(list),key,alphabet),  StandardCharsets.UTF_8);
+                Files.writeString(ff, encrypt(String.valueOf(list),key),  StandardCharsets.UTF_8);
                 copyFileUsingChannel(mainFile,endFile);
                 System.out.println(Path.of(String.valueOf(endFile)));
                 break;
@@ -137,13 +137,13 @@ public class Solution {
                     Scanner sca = new Scanner(System.in);
                     Scanner stringScanner = new Scanner(System.in);
                     key = sca.nextInt();
-                    System.out.println(brutForse(String.valueOf(list), key, alphabet));
+                    System.out.println(brutForse(String.valueOf(list), key));
                     System.out.println("Текст расшифрован?");
                     String stringKey = stringScanner.nextLine();
                     if (strYes.equalsIgnoreCase(stringKey)) {
                         System.out.println("Ключ подобран верно!");
 
-                        Files.writeString(ff, brutForse(String.valueOf(list),key,alphabet),  StandardCharsets.UTF_8);
+                        Files.writeString(ff, brutForse(String.valueOf(list),key),  StandardCharsets.UTF_8);
                         copyFileUsingChannel(mainFile,endFile);
                         System.out.println(Path.of(String.valueOf(endFile)));
                         fin = true;
@@ -173,10 +173,10 @@ public class Solution {
                     ff = Paths.get(String.valueOf(mainFile));
                         for (int i = 0; i < 29; i++) {
 
-                            if (brutForse(list, keyi, alphabet).contains(pieceOfText)) {
+                            if (brutForse(list, keyi).contains(pieceOfText)) {
                                 System.out.println("Шифр взломан!");
 
-                                Files.writeString(ff, brutForse(list,keyi,alphabet),  StandardCharsets.UTF_8);
+                                Files.writeString(ff, brutForse(list,keyi),  StandardCharsets.UTF_8);
                                 copyFileUsingChannel(mainFile,endFile);
                                 System.out.println(Path.of(String.valueOf(endFile)));
                                 break;
@@ -193,59 +193,59 @@ public class Solution {
         }
 
 
-    private static String encrypt(String text, int key, char[] alphabet) {
+    private static String encrypt(String text, int key) {
         int k = Integer.parseInt("-" + key);
         String string = "";
         for (int i = 0; i < text.length(); i++) {
             char simbol = text.charAt(i);
-            if (simbol >= 'a' && simbol <= 'z')// Если символ в строке строчный
+            if (simbol >= 'a' && simbol <= 'z')
             {
-                simbol += k % 26;// мобильный ключ% 26 бит
+                simbol += k % 26;
                 if (simbol < 'a')
-                    simbol += 26;// слева налево
+                    simbol += 26;
                 if (simbol > 'z')
                     simbol -= 26;// направо
-            } else if (simbol >= 'A' && simbol <= 'Z')// Если символ в строке в верхнем регистре
+            } else if (simbol >= 'A' && simbol <= 'Z')
             {
-                simbol += k % 26;// мобильный ключ% 26 бит
+                simbol += k % 26;
                 if (simbol < 'A')
-                    simbol += 26;// слева налево
+                    simbol += 26;
                 if (simbol > 'Z')
-                    simbol -= 26;// направо
+                    simbol -= 26;
             }
-            string += simbol;// Объединяем расшифрованные символы в строку
+            string += simbol;
         }
         System.out.println(text + "После расшифровки:" + string);
         return string;
     }
 
 
-    private static String decrypt(String text, int key, char[] alphabet) {
+    private static String decrypt(String text, int key) {
         String string = "";
         for (int i = 0; i < text.length(); i++) {
             char simbol = text.charAt(i);
-            if (simbol >= 'a' && simbol <= 'z')// Если символ в строке строчный
+            if (simbol >= 'a' && simbol <= 'z')
             {
-                simbol += key % 26;// мобильный ключ% 26 бит
+                simbol += key % 26;
                 if (simbol < 'a')
-                    simbol += 26;// слева налево
+                    simbol += 26;
                 if (simbol > 'z')
-                    simbol -= 26;// направо
-            } else if (simbol >= 'A' && simbol <= 'Z')// Если символ в строке в верхнем регистре
+                    simbol -= 26;
+            } else if (simbol >= 'A' && simbol <= 'Z')
             {
-                simbol += key % 26;// мобильный ключ% 26 бит
+                simbol += key % 26;
                 if (simbol < 'A')
-                    simbol += 26;// слева налево
+                    simbol += 26;
                 if (simbol > 'Z')
-                    simbol -= 26;// направо
+                    simbol -= 26;
             }
-            string += simbol;// Объединяем расшифрованные символы в строку
+            string += simbol;
         }
         System.out.println(text + "После шифрования:" + string);
         return string;
     }
 
-    private static String brutForse(String text, int key, char[] alphabet) {
+    private static String brutForse(String text, int key) {
         int k = Integer.parseInt("-" + key);
         String string = "";
         for (int i = 0; i < text.length(); i++) {
